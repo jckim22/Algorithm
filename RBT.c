@@ -1,3 +1,34 @@
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+typedef struct RBTnode {
+	struct RBTnode* parent;
+	struct RBTnode* left;
+	struct RBTnode* right;
+	int data;
+	enum {RED,BLACK} color;
+
+
+}RBT;
+RBT* createNode(int data) {
+	RBT* newNode = (RBT*)malloc(sizeof(RBT*));
+
+	newNode->parent = NULL;
+	newNode->left = NULL;
+	newNode->right = NULL;
+	newNode->data = data;
+	newNode->color = BLACK;
+
+	return newNode;
+}
+
+int main() {
+
+}
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,11 +37,11 @@
 typedef int Elementtype;
 
 typedef struct tagRBTNode {
-	struct tagRBTNode *right;
+	struct tagRBTNode* right;
 	struct tagRBTNode* left;
 	struct tagRBTNode* parent;
 	Elementtype data;
-	enum {Red, Black} color;
+	enum { Red, Black } color;
 }RBTNode;
 
 static RBTNode* Nil;
@@ -83,11 +114,11 @@ void RBTInsertNodeHelper(RBTNode** Tree, RBTNode* Newnode)
 	{
 		*Tree = Newnode;
 	}
-	if (( * Tree)->data < Newnode->data)
+	if ((*Tree)->data < Newnode->data)
 	{
-		if ((* Tree)->right == Nil)
+		if ((*Tree)->right == Nil)
 		{
-			(* Tree)->right = Newnode;
+			(*Tree)->right = Newnode;
 			Newnode->parent = *Tree;
 		}
 		else {
@@ -110,18 +141,18 @@ void RBTRotateRight(RBTNode** root, RBTNode* parent)
 {
 	RBTNode* leftChild = parent->left;
 
-	parent->left = leftChild->right;//왼쪽 자식의 오른쪽 자식 노드를 부모 노드의 왼쪽으로 등록
+	parent->left = leftChild->right;
 
 	if (leftChild->right != Nil)
 		leftChild->right->parent = parent;
 
 	leftChild->parent = parent->parent;
 
-	if (parent->parent == NULL)//부모가 NULL일 경우 왼쪽 자식을 루트로 변경
+	if (parent->parent == NULL)
 		(*root) = leftChild;
 	else
 	{
-		if (parent == parent->parent->left)//왼쪽 자식 노드를 부모가 있던 곳에 위치시킴.
+		if (parent == parent->parent->left)
 			parent->parent->left = leftChild;
 		else
 			parent->parent->right = leftChild;
@@ -133,18 +164,18 @@ void RBTRotateLeft(RBTNode** root, RBTNode* parent)
 {
 	RBTNode* rightChild = parent->right;
 
-	parent->right = rightChild->left;//왼쪽 자식의 오른쪽 자식 노드를 부모 노드의 왼쪽으로 등록
+	parent->right = rightChild->left;
 
 	if (rightChild->left != Nil)
 		rightChild->left->parent = parent;
 
 	rightChild->parent = parent->parent;
 
-	if (parent->parent == NULL)//부모가 NULL일 경우 오른쪽 자식을 루트로 변경
+	if (parent->parent == NULL)
 		(*root) = rightChild;
 	else
 	{
-		if (parent == parent->parent->right)//오른쪽 자식 노드를 부모가 있던 곳에 위치시킴.
+		if (parent == parent->parent->right)
 			parent->parent->right = rightChild;
 		else
 			parent->parent->left = rightChild;
@@ -155,16 +186,15 @@ void RBTRotateLeft(RBTNode** root, RBTNode* parent)
 
 void RBTRebuildAfterInsert(RBTNode** root, RBTNode* node)
 {
-	//부모 노드가 루트가 아니거나 빨간색일 경우, while문을 반복한다.
+
 	while (node != (*root) && node->parent->color == Red)
 	{
 		if (node->parent == node->parent->parent->left)
 		{
-			//삽입된 노드의 아빠의 아빠의 오른쪽 = 오른쪽 삼촌을 의미한다.
+
 			RBTNode* uncle = node->parent->parent->right;
 			if (uncle->color == Red)
 			{
-				//1번 작업
 				node->parent->color = Black;
 				uncle->color = Black;
 				node->parent->parent->color = Red;
@@ -172,7 +202,7 @@ void RBTRebuildAfterInsert(RBTNode** root, RBTNode* node)
 			}
 			else
 			{
-				//2번 케이스
+
 				if (node == node->parent->right)
 				{
 					node = node->parent;
@@ -183,20 +213,20 @@ void RBTRebuildAfterInsert(RBTNode** root, RBTNode* node)
 				RBTRotateRight(root, node->parent->parent);
 			}
 		}
-		else // 위에 있는 구문과 방향만 정반대로 바꾸면 된다.
+		else
 		{
-			//삽입된 노드의 아빠의 아빠의 왼쪽 = 왼쪽 삼촌을 의미한다.
+
 			RBTNode* uncle = node->parent->parent->left;
 			if (uncle->color == Red)
 			{
-				//1번 작업
+
 				node->parent->color = Black;
 				uncle->color = Black;
 				node->parent->parent->color = Red;
 			}
 			else
 			{
-				//2번 케이스
+
 				if (node == node->parent->left)
 				{
 					node = node->parent;
@@ -339,7 +369,7 @@ RBTNode* RBTRemove(RBTNode** Root, Elementtype data)
 		{
 			RBTRebuildAfterRemove(Root, Successor);
 		}
-		
+
 	}
 	return Remove;
 }
@@ -358,7 +388,7 @@ void RBTprintTree(RBTNode* Node, int depth, int blackcount)
 	{
 		blackcount++;
 	}
-	if(Node->parent != NULL)
+	if (Node->parent != NULL)
 	{
 		v = Node->parent->data;
 		if (Node->parent->left == Node)
@@ -401,7 +431,7 @@ int main()
 		printf("(1) Create a Node, (2) Remove a Node, (3) Search a Node\n");
 		printf("(4) Display Tree, (5) quit\n");
 		printf("commend number: ");
-		fgets(buffer, sizeof(buffer) - 1,stdin);
+		fgets(buffer, sizeof(buffer) - 1, stdin);
 		sscanf(buffer, "%d", &cmd);
 
 		if (cmd < 1 || cmd >5)
@@ -415,7 +445,7 @@ int main()
 			printf("\n");
 			continue;
 		}
-		else if(cmd ==5) {
+		else if (cmd == 5) {
 			break;
 		}
 		printf("Enter parameter (1~200) : \n");
