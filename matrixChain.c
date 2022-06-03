@@ -16,14 +16,14 @@ int matrixChain(int p[], int n)
 	int r, k;
 	int m[6][6] = { 0 };
 	for (i = 1; i < n; i++)
-		m[i][i] = 0;
+		m[i][i] = 0;  //행렬이 하나뿐인 경우의 비용은 0이다
 
-	for (r = 1; r < n - 1; r++)
-		for (i = 1; i < n - r; i++) {
+	for (r = 1; r < n - 1; r++)  //j의 크기를 결정 여기서 j는 문제의 크기이다
+		for (i = 1; i < n - r; i++) { //i의 범위를 설정한다
 			j = i + r;
-			m[i][j] = m[i + 1][j] + p[i - 1] * p[i] * p[j];
+			m[i][j] = m[i + 1][j] + p[i - 1] * p[i] * p[j]; //현재 
 			for (k = i + 1; k <= j - 1; k++) {
-				m[i][j] = Min(m[i][j], m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * p[j]);
+				m[i][j] = Min(m[i][j], m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * p[j]); /
 
 			}
 		}
