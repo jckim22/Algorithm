@@ -27,7 +27,7 @@ def BFS(x,y):
             
 
 n,m=map(int,input().split())
-graph=[list(map(int,input())) for x in range(n)]
+graph=[list(map(int,input())) for x in range(n)] 
 #상하좌우 방향벡터
 dx=[-1,1,0,0]
 dy=[0,0,-1,1]

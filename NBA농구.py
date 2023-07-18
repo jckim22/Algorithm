@@ -39,7 +39,7 @@ for x in range(48):
 am=str(acnt//60)
 asc=str(acnt%60)
 
-bm=str(bcnt//48)
+bm=str(bcnt//60)
 bsc=str(bcnt%60)
             
 if acnt//48<10:

@@ -2,6 +2,19 @@ s = input()
 answer = []
 num = 0
 
+for x in s:
+    if x.isalpha():
+        answer.append(x)
+    else:
+        num+=int(x) 
+        
+answer = sorted(answer)
+
+if num != 0:
+    answer.append(str(num))
+    
+print(''.join(answer))
+
 # s= sorted(s)
 # cnt=0
 # num=0
@@ -24,18 +37,7 @@ num = 0
 
 # print(''.join(answer))
 
-for x in s:
-    if x.isalpha():
-        answer.append(x)
-    else:
-        num+=int(x) 
-        
-answer = sorted(answer)
 
-if num != 0:
-    answer.append(str(num))
-    
-print(''.join(answer))
 
         
 

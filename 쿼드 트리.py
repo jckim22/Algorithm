@@ -11,11 +11,7 @@ def divide(srow,scol,n):
     
     check=True
     s=arr[srow][scol]
-    # for x in range(srow,srow+n):
-        # for y in range(scol,scol+n):
-            # print(arr[x][y],end='')
-            
-        # print()
+          
     for x in range(srow,srow+n):
         for y in range(scol,scol+n):
             if s!=arr[x][y]:
