@@ -92,6 +92,7 @@
 
 
 
+
 from collections import deque
 row,col=map(int,input().split())
 matrix=[list(map(int,input())) for _ in range(row)]
@@ -106,19 +107,22 @@ def bfs():
         dx=[-1,1,0,0]
         dy=[0,0,-1,1]
         if r==row-1 and c==col-1:
-            print(visited[r][c][crush])
+            return visited[r][c][crush]
         for mv in range(4):
             nr=r+dx[mv]
             nc=c+dy[mv]            
             if nr<0 or nr>=row or nc<0 or nc>=col:
                 continue
+            #벽이 뚫린 세계가 아니고 만약 벽을 만났다면
             if matrix[nr][nc]==1 and crush==0:
+                #벽이 뚫린 세계로 이동
                 visited[nr][nc][1]=visited[r][c][0]+1
                 q.append([nr,nc,1])
+            #어떤 세계이든 한번도 방문하지 않은 곳이고 벽이 아니라면
             elif matrix[nr][nc]==0 and visited[nr][nc][crush]==0:
+                #방문처리
                 visited[nr][nc][crush]=visited[r][c][crush]+1
                 q.append([nr,nc,crush])
     return -1
 print(bfs())
         
-    
