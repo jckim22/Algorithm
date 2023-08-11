@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class Main{
+public class 평균{
     public static void main(String args[]){
         ArrayList<Integer> arr = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
