@@ -13,7 +13,6 @@ while True:
     if check:
         break
     answer+=1
-
 print(answer)
     
     

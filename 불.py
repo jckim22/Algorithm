@@ -8,6 +8,7 @@ for _ in range(n):
     matrix=[list(input()) for _ in range(row)]
     fire_visited=[[0 for _ in range(col)]  for _ in range(row)]
     human_visited=[[0 for _ in range(col)]  for _ in range(row)]
+    #불과 사람의 시작위치 저장
     for x in range(row):
         for y in range(col):
             if matrix[x][y]=='@':            
@@ -15,7 +16,7 @@ for _ in range(n):
                 startcol=y
             if matrix[x][y]=='*':
                 fire.append([x,y])
-    #0:이동가능 1:벽 ,불           
+    #불 BFS (일반적인 bfs)
     def fire_bfs():
         q=[]
         q=deque()
@@ -37,6 +38,7 @@ for _ in range(n):
                     continue
                 fire_visited[nr][nc]=fire_visited[r][c]+1
                 q.append([nr,nc])
+    #사람 bfs (불이 도착한 시간보다 적을 때 q에 append하는 제약이 추가됨)                
     def human_bfs():   
         q=[]     
         q=deque()

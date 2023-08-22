@@ -1,76 +1,88 @@
-# n=int(input())
-# srr=[input() for _ in range(n)]
-# visited=[0 for _ in range(len(srr))]
-# cnt=0
-# from collections import defaultdict,deque
-# alpha=defaultdict(list)
-# for x in range(97,122):
-#     alpha[chr(x)].append(0)
-# q=deque(srr)
-# maxlen=0
-# for x in range(n):
-#     maxlen=max(len(srr[x]),maxlen)
-# cnt=0
-# tmp=[]
-# for y in range(maxlen):
-#     check=0    
-#     while q:
-#         s=q.popleft()
-#         for x in range(97,122):
-#             if len(s)>cnt:
-#                 if s[cnt]==chr(x):
-#                     alpha[chr(x)].append(s)
-#     for z in alpha.values():
-#         if len(z)>2:
-#             check+=1
-#     if check==0:        
-#         break
-#     tmp=[]                                                            
-#     for z in alpha.values():
-#         if len(z)>2:            
-#             tmp.append(z)
-#             for i in z:
-#                 if i !=0:
-#                     q.append(i)
-    
-#     alpha=defaultdict(list)
-#     for x in range(97,122):
-#         alpha[chr(x)].append(0)                    
-#     cnt+=1    
-# print(tmp)
-# if not tmp:
-#     print(srr[0])
-#     print(srr[1])
-# else:
-#     print(tmp[len(tmp)-1][1])
-#     print(tmp[len(tmp)-1][2])
+#첫 풀이
+from collections import defaultdict,deque
+n=int(input())
+srr=[input() for _ in range(n)]
+cnt=0
+#알파벳 딕셔너리 생성
+alpha=defaultdict(list)
+for x in range(97,122):
+    alpha[chr(x)].append(0)
+
+q=deque(srr)
+maxlen=0
+#최장 길이를 구함
+for x in range(n):
+    maxlen=max(len(srr[x]),maxlen)
+cnt=0
+tmp=[]
+#최장 길이만큼 반복
+for y in range(maxlen):
+    check=0 
+    #큐의 크기(단계를 거쳐낸 문자열들)만큼 반복 진행
+    while q:
+        s=q.popleft()
+        #해당 번째 알파벳에 같은 것이 있으면 append
+        for x in range(97,122):
+            if len(s)>cnt:
+                if s[cnt]==chr(x):
+                    alpha[chr(x)].append(s)
+    #알파벳중 밸류가 2보다 큰 것(0과 문자열 2개)은 단계를 통과한 것이므로
+    for z in alpha.values():
+        if len(z)>2:
+            #check
+            check+=1
+    #check가 없다면 단계 통과 실패니까 break            
+    if check==0:        
+        break
+    #이번 단계도 실패하지 않았다면 한번 더 측정을 위해 tmp를 초기화
+    tmp=[]             
+    #단계를 통과한 문자열들을 q에 append함
+    for z in alpha.values():
+        if len(z)>2:            
+            tmp.append(z)
+            for i in z:
+                if i !=0:
+                    q.append(i)
+    #alpha 딕셔너리도 초기화
+    alpha=defaultdict(list)
+    for x in range(97,122):
+        alpha[chr(x)].append(0)
+    #다음번째 문자를 검사하기 위해 cnt를 +1해준다                    
+    cnt+=1    
+print(tmp)
+if not tmp:
+    print(srr[0])
+    print(srr[1])
+else:
+    print(tmp[len(tmp)-1][1])
+    print(tmp[len(tmp)-1][2])
 
 
 
 
-# n=int(input())
-# srr=[input() for _ in range(n)]
-# for x in enumerate(srr):
-#     srr[x[0]]=x
-# def check(x,y):
-#     cnt=0
-#     min_len=min(len(x),len(y))    
-#     for i in range(min_len):
-#         if x[i]==y[i]:
-#             cnt+=1
-#         else:
-#             return cnt
-#     return cnt
-# maxlen=[-1,-1,0]        
-# for x in range(n):
-#     for y in range(x+1,n):    
-#         cur=check(srr[x][1],srr[y][1])            
-#         if maxlen[2] < cur:
-#             maxlen[0]=x
-#             maxlen[1]=y
-#             maxlen[2]=cur          
-# print(srr[maxlen[0]][1])
-# print(srr[maxlen[1]][1])
+n=int(input())
+srr=[input() for _ in range(n)]
+for x in enumerate(srr):
+    srr[x[0]]=x
+def check(x,y):
+    cnt=0
+    min_len=min(len(x),len(y))    
+    for i in range(min_len):
+        if x[i]==y[i]:
+            cnt+=1
+        else:
+            return cnt
+    return cnt
+maxlen=[-1,-1,0]        
+for x in range(n):
+    for y in range(x+1,n):    
+        cur=check(srr[x][1],srr[y][1])            
+        if maxlen[2] < cur:
+            maxlen[0]=x
+            maxlen[1]=y
+            maxlen[2]=cur          
+print(srr[maxlen[0]][1])
+print(srr[maxlen[1]][1])
 
 
 n = int(input())

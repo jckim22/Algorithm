@@ -23,8 +23,9 @@ answer=n
 for _ in range(n):
     keywords[stdin.readline().rstrip()]=True            
 for x in range(m):
-    write=list(stdin.readline().rstrip().split(','))    
+    write=list(stdin.readline().rstrip().split(',' ))    
     for y in write:
+        #모든 key()들 중 y 하나
         if y in keywords.keys():
             if keywords[y]:
                 keywords[y]=False

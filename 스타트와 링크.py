@@ -10,67 +10,67 @@
 #O(n!)를 생각하면 가능해보인다.
 #자료구조
 #1차원 리스트:스타트팀 링크팀, 2차원 행렬 리스트:각 선수들의 케미
-# from sys import stdin
-# input=stdin.readline
-# start=set()
-# n=int(input())
-# matrix=[list(map(int,input().split())) for _ in range(n)]
-# person=[True]*n
-# def abil():    
-#     starttmp=0
-#     linktmp=0
-#     for x in range(n):
-#         for y in range(x,n):
-#             if x in start and y in start:       
-#                 starttmp+=matrix[x][y]+matrix[y][x]
-#             elif x not in start and y not in start:
-#                 linktmp+=matrix[x][y]+matrix[y][x]
-#     return abs(starttmp-linktmp)            
-# answer=10000000    
-# def dfs(depth):
-#     global answer
-#     if depth==int(n/2):
-#         answer=min(answer,abil())
-#         return
-#     for x in range(n):
-#             if person[x]:
-#                 start.add(x)
-#                 person[x]=False
-#                 dfs(depth+1)
-#                 start.remove(x)                
-#                 person[x]=True                
-# dfs(0)
-# print(answer)                
+from sys import stdin
+input=stdin.readline
+start=set()
+n=int(input())
+matrix=[list(map(int,input().split())) for _ in range(n)]
+person=[True]*n
+def abil():    
+    starttmp=0
+    linktmp=0
+    for x in range(n):
+        for y in range(x,n):
+            if x in start and y in start:       
+                starttmp+=matrix[x][y]+matrix[y][x]
+            elif x not in start and y not in start:
+                linktmp+=matrix[x][y]+matrix[y][x]
+    return abs(starttmp-linktmp)            
+answer=10000000    
+def dfs(depth):
+    global answer
+    if depth==int(n/2):
+        answer=min(answer,abil())
+        return
+    for x in range(n):
+            if person[x]:
+                start.add(x)
+                person[x]=False
+                dfs(depth+1)
+                start.remove(x)                
+                person[x]=True                
+dfs(0)
+print(answer)                
 
 
-# from sys import stdin
-# input=stdin.readline
-# n=int(input())
-# matrix=[list(map(int,input().split())) for _ in range(n)]
-# person=[True]*n
-# def abil():    
-#     starttmp=0
-#     linktmp=0
-#     for x in range(n):
-#         for y in range(x,n):
-#             if not person[x] and not person[y]:
-#                 starttmp+=matrix[x][y]+matrix[y][x]
-#             elif person[x] and person[y]:
-#                 linktmp+=matrix[x][y]+matrix[y][x]    
-#     return abs(starttmp-linktmp)            
-# answer=10000000    
-# def dfs(depth):
-#     global answer
-#     if depth==int(n/2):
-#         answer=min(answer,abil())
-#         return
-#     for x in range(n):
-#             if person[x]:                
-#                 person[x]=False
-#                 dfs(depth+1)                
-#                 person[x]=True                
-# dfs(0)
-# print(answer)    
+from sys import stdin
+input=stdin.readline
+n=int(input())
+matrix=[list(map(int,input().split())) for _ in range(n)]
+person=[True]*n
+def abil():    
+    starttmp=0
+    linktmp=0
+    for x in range(n):
+        for y in range(x,n):
+            if not person[x] and not person[y]:
+                starttmp+=matrix[x][y]+matrix[y][x]
+            elif person[x] and person[y]:
+                linktmp+=matrix[x][y]+matrix[y][x]    
+    return abs(starttmp-linktmp)            
+answer=10000000    
+def dfs(depth):
+    global answer
+    if depth==int(n/2):
+        answer=min(answer,abil())
+        return
+    for x in range(n):
+            if person[x]:                
+                person[x]=False
+                dfs(depth+1)                
+                person[x]=True                
+dfs(0)
+print(answer)    
 
 
 import sys

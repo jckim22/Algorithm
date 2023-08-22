@@ -9,10 +9,6 @@
 from collections import deque
 from sys import stdin
 def bfs(matrixx):    
-    # print('first')
-    # for x in range(n):
-    #     print(*matrixx[x])
-    
     q=deque()        
     for x in virus:
         q.append(x)
@@ -30,10 +26,6 @@ def bfs(matrixx):
             matrixx[nr][nc]=2
             q.append([nr,nc])
     a=checkSafe(matrixx)
-    # print('second')
-    # for x in range(n):
-    #     print(*matrixx[x])
-    # print()
     return a
 
             

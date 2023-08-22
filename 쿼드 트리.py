@@ -1,5 +1,5 @@
 n=int(input())
-# arr = [list(map(int,input().split())) for _ in range(n)]
+# arr = [list(map(int,input().split())) for _ in rang e(n)]
 arr = list()
 for x in range(n):
     arr.append(list(input()))

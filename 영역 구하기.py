@@ -1,18 +1,18 @@
 import sys
 sys.setrecursionlimit(10000000)
-
 m,n,k=map(int,input().split())
 stage=[[0 for _ in range(n)] for _ in range(m)]
 for _ in range(k):
     lx,ly,rx,ry=map(int,input().split())
     for x in range(ly,ry):
         for y in range(lx,rx):            
-            stage[x][y]=2               
+            stage[x][y]=2      
 cnt=0
 def DFS(nx,ny):    
     global cnt
     if nx<0 or nx>=m or ny<0 or ny>=n or stage[nx][ny]==1 or stage[nx][ny]==2:      
-        return    
+        return
+    #방문처리와 카운트    
     stage[nx][ny]=1
     cnt+=1
     DFS(nx-1,ny)
@@ -24,10 +24,12 @@ import heapq
 ans=[]
 for x in range(m):
     for y in range(n):        
-        DFS(x,y)        
+        DFS(x,y)
+        #빈 영역을 갔다 왔다면 ans에 push        
         if cnt>0:            
             heapq.heappush(ans,cnt)
         cnt=0
+#오름차순 정렬    
 ans.sort()
 print(len(ans))
 for x in ans:
