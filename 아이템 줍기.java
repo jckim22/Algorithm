@@ -33,7 +33,6 @@ class Solution {
                 }
             }
         }
-
         answer=bfs(characterY*2,characterX*2,itemY*2,itemX*2);
         //         for(int[] temp:matrix){
         //     for(int tmp:temp){
@@ -43,10 +42,7 @@ class Solution {
         // }
         
         //정답의 나누기 2
-        return answer/2;
-        
-
-                
+        return answer/2;                        
     }
     public static int bfs(int x, int y,int ix,int iy){
         //방문 매트릭스 할당
