@@ -16,7 +16,6 @@ for x in range(2,cur+1):
         if s[y:y+x] == s[y+x:y+x+x]:
             len-=x
     print(len)
-
             
             
 
