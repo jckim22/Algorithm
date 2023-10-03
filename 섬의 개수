@@ -1,0 +1,80 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.Buffer;
+import java.util.*;
+//아이디어
+//BFS인데 방향벡터가 대각선까지 총 8개가 필요하다.
+//먼저 while 문으로 반복을 한다.
+//지도를 받고 BFS를 돌려서 섬의 개수를 구한다.
+public class 섬의 개수 {
+    static int w,h;
+    static int[][] matrix;
+    static int[][] visited;
+    static int[] dx={-1,1,0,0,1,-1,-1,1};
+    static int[] dy={0,0,-1,1,-1,1,-1,1};
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        while(true){
+            st=new StringTokenizer(br.readLine());
+            w=Integer.valueOf(st.nextToken());
+            h=Integer.valueOf(st.nextToken());
+            if(w==0 && h==0){
+                return;
+            }
+            matrix=new int[h][w];
+            visited=new int[h][w];
+            for(int i=0; i<h; i++ ){
+                st=new StringTokenizer(br.readLine());
+                for(int j=0; j<w; j++){
+                    matrix[i][j]=Integer.valueOf(st.nextToken());
+                }
+            }
+            int cnt=0;
+            for(int i=0; i<h; i++){
+                for(int j=0; j<w; j++){
+                    if(visited[i][j]==0 && matrix[i][j]==1){
+                        visited[i][j]=1;
+                        bfs(new int[]{i,j});
+                        cnt++;
+//                        for(int t=0; t<h; t++){
+//                            for(int y=0; y<w; y++) {
+//                                System.out.prin   tf("%d ", visited[t][y]);
+//                            }
+//                            System.out.println();
+//                        }
+//                        System.out.println();
+                    }
+                }
+            }
+
+
+            System.out.println(cnt);
+        }
+    }
+    public static void bfs(int[] start){
+        ArrayDeque<int[]> q=new ArrayDeque<>();
+        q.add(start);
+        while(!q.isEmpty()){
+            int[] cur=q.pollFirst();
+            int cx=cur[0];
+            int cy=cur[1];
+            for(int i=0; i<8; i++){
+                int nx=cx+dx[i];
+                int ny=cy+dy[i];
+                if(nx<0 || nx>=h || ny<0 || ny>=w){
+                    continue;
+                }
+                if(visited[nx][ny]!=0){
+                    continue;
+                }
+                if(matrix[nx][ny]==0){
+                    continue;
+                }
+                visited[nx][ny]=1;
+                q.add(new int[]{nx,ny});
+            }
+        }
+    }
+}
