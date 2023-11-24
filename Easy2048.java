@@ -102,10 +102,6 @@ public class Easy2048 {
                 int[] cur = blockSeq.get(j);
                 move(cur[0], cur[1], i, cur[0] + dx[i], cur[1] + dy[i], cur[0], cur[1]);
             }
-//            for (int[] a : matrix) {
-//                System.out.println(Arrays.toString(a));
-//            }
-//            System.out.println();
             back(depth + 1);
             matrix = matrixCopy;
         }
@@ -141,9 +137,6 @@ public class Easy2048 {
                 return;
             }
             //결합
-//            for (int[] arr : fusionBlock) {
-//                System.out.println(Arrays.toString(arr));
-//            }
             if (matrix[nx][ny] == matrix[x][y] && !(containsArray(fusionBlock, new int[]{nx, ny}))) {
                 matrix[nx][ny] *= 2;
                 matrix[bx][by] = 0;
@@ -156,7 +149,6 @@ public class Easy2048 {
             }
             matrix[x][y] = 0;
             return;
-
         }
         move(x, y, vector, nx + dx[vector], ny + dy[vector], nx, ny);
     }
